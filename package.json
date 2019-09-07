@@ -1,0 +1,78 @@
+{
+  "name": "@anypoint-web-components/anypoint-menu-button",
+  "description": "An icon button to trigger a dropdown menu",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "keywords": [
+    "anypoint-web-components",
+    "dropdown-menu",
+    "icon-button"
+  ],
+  "module": "index.js",
+  "authors": [
+    "Pawel Psztyc"
+  ],
+  "contributors": [
+    "The Advanced REST client authors <arc@mulesoft.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anypoint-web-components/anypoint-menu-button.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anypoint-web-components/anypoint-menu-button/issues",
+    "email": "arc@mulesoft.com"
+  },
+  "dependencies": {
+    "@anypoint-web-components/anypoint-control-mixins": "^1.0.2",
+    "@anypoint-web-components/anypoint-dropdown": "^1.0.0",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "@advanced-rest-client/arc-demo-helper": "^1.0.14",
+    "@advanced-rest-client/eslint-config": "^1.1.2",
+    "@advanced-rest-client/prettier-config": "^0.1.0",
+    "@advanced-rest-client/testing-karma-sl": "^1.0.4",
+    "@anypoint-web-components/anypoint-button": "^1.0.11",
+    "@anypoint-web-components/anypoint-checkbox": "^1.0.1",
+    "@anypoint-web-components/anypoint-item": "^1.0.3",
+    "@anypoint-web-components/anypoint-listbox": "^1.0.3",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^7.0.0",
+    "@open-wc/testing": "^2.0.0",
+    "@open-wc/testing-karma": "^3.0.0",
+    "@polymer/iron-test-helpers": "^3.0.1",
+    "deepmerge": "^4.0.0",
+    "es-dev-server": "^1.17.2",
+    "husky": "^1.0.0",
+    "lint-staged": "^8.0.0",
+    "sinon": "^7.4.2",
+    "web-animations-js": "^2.3.1"
+  },
+  "scripts": {
+    "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
+    "start:compatibility": "es-dev-server --app-index demo/index.html --compatibility all --node-resolve --open --watch",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "test:compatibility": "karma start --compatibility all --coverage",
+    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
+    "test:sl": "karma start karma.sl.config.js --compatibility all --coverage",
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
