@@ -1,56 +1,16 @@
-import { html, css, LitElement } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 import '@anypoint-web-components/anypoint-dropdown/anypoint-dropdown.js';
-import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins/control-state-mixin.js';
+import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
+import buttonStyles from './Styles.js';
+
+/** @typedef {import('@anypoint-web-components/anypoint-dropdown').AnypointDropdown} AnypointDropdown */
+
+/* eslint-disable no-plusplus */
 
 export class AnypointMenuButton extends ControlStateMixin(LitElement) {
   static get styles() {
-    return css`
-      :host {
-        display: inline-block;
-        position: relative;
-        padding: 8px;
-        outline: none;
-      }
-
-      :host([disabled]) {
-        cursor: auto;
-        color: var(--disabled-text-color);
-      }
-
-      .dropdown-content {
-        box-shadow: var(--anypoiont-dropdown-shaddow);
-        position: relative;
-        border-radius: 2px;
-        background-color: var(--anypoiont-menu-button-dropdown-background, var(--primary-background-color));
-      }
-
-      :host([verticalalign="top"]) .dropdown-content {
-        margin-bottom: 20px;
-        margin-top: -10px;
-        top: 10px;
-      }
-
-      :host([verticalalign="bottom"]) .dropdown-content {
-        bottom: 10px;
-        margin-bottom: -10px;
-        margin-top: 20px;
-      }
-
-      #trigger {
-        cursor: pointer;
-      }
-
-      :host([compatibility]) .dropdown-content {
-        box-shadow: none;
-        border-top-width: 2px;
-        border-bottom-width: 2px;
-        border-top-color: var(--anypoint-menu-button-border-top-color, var(--anypoint-color-aluminum4));
-        border-bottom-color: var(--anypoint-menu-button-border-bottom-color, var(--anypoint-color-aluminum4));
-        border-top-style: solid;
-        border-bottom-style: solid;
-      }
-    `;
+    return buttonStyles;
   }
 
   static get properties() {
@@ -132,6 +92,9 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     };
   }
 
+  /**
+   * @return {AnypointDropdown}
+   */
   get dropdown() {
     return this.shadowRoot.querySelector('#dropdown');
   }
@@ -148,16 +111,16 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     }
     this._opened = value;
     this.requestUpdate('opened', old);
-    this._openedChanged(value, old);
+    this._openedChanged(value);
   }
 
   get contentElement() {
-    const slot = this.shadowRoot.querySelector('#content');
+    const slot = /** @type HTMLSlotElement */ (this.shadowRoot.querySelector('#content'));
     /* istanbul ignore if */
     if (!slot) {
       return null;
     }
-    const nodes = slot.assignedNodes();
+    const nodes = slot.assignedElements();
     for (let i = 0, l = nodes.length; i < l; i++) {
       if (nodes[i].nodeType === Node.ELEMENT_NODE) {
         return nodes[i];
@@ -166,19 +129,29 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     /* istanbul ignore if */
     return null;
   }
+
   /**
-   * @return {Function} Previously registered handler for `select` event
+   * @return {EventListener} Previously registered handler for `select` event
    */
   get onselect() {
     return this._onselect;
   }
+
   /**
    * Registers a callback function for `select` event
-   * @param {Function} value A callback to register. Pass `null` or `undefined`
+   * @param {EventListener} value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
   set onselect(value) {
-    this._registerCallback('select', value);
+    if (this._onselect) {
+      this.removeEventListener('select', this._onselect);
+    }
+    if (typeof value !== 'function') {
+      this._onselect = null;
+      return;
+    }
+    this._onselect = value;
+    this.addEventListener('select', value);
   }
 
   constructor() {
@@ -190,6 +163,15 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     this.verticalOffset = 0;
     this.horizontalAlign = 'left';
     this.verticalAlign = 'top';
+
+    this.closeOnActivate = false;
+    this.ignoreSelect = false;
+    this.dynamicAlign = false;
+    this.noOverlap = false;
+    this.noAnimations = false;
+    this.allowOutsideScroll = false;
+    this.restoreFocusOnClose = false;
+    this.compatibility = false;
   }
 
   connectedCallback() {
@@ -215,6 +197,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
   _openedHandler(e) {
     this.opened = e.detail.value;
   }
+
   /**
   * Toggles the dropdown content between opened and closed.
   */
@@ -225,6 +208,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
       this.open();
     }
   }
+
   /**
    * Make the dropdown content appear as an overlay positioned relative
    * to the dropdown trigger.
@@ -233,7 +217,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     if (this.disabled) {
       return;
     }
-
+    // @ts-ignore
     this.dropdown.open();
   }
 
@@ -241,20 +225,8 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
    * Hides the dropdown content
    */
   close() {
+    // @ts-ignore
     this.dropdown.close();
-  }
-
-  _registerCallback(eventType, value) {
-    const key = `_on${eventType}`;
-    if (this[key]) {
-      this.removeEventListener(eventType, this[key]);
-    }
-    if (typeof value !== 'function') {
-      this[key] = null;
-      return;
-    }
-    this[key] = value;
-    this.addEventListener(eventType, value);
   }
 
   _activateHandler() {
@@ -269,14 +241,14 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     }
   }
 
-  _disabledChanged(value, old) {
-    super._disabledChanged(value, old);
+  _disabledChanged(value) {
+    super._disabledChanged(value);
     if (value && this.opened) {
       this.close();
     }
   }
 
-  _openedChanged(opened, oldOpened) {
+  _openedChanged(opened) {
     let type;
     if (opened) {
       this._dropdownContent = this.contentElement;
