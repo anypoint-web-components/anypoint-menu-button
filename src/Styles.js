@@ -14,10 +14,10 @@ export default css`
 }
 
 .dropdown-content {
-  box-shadow: var(--anypoiont-dropdown-shaddow);
+  box-shadow: var(--anypoint-menu-button-context-shadow, var(--anypoint-dropdown-shadow));
   position: relative;
   border-radius: 2px;
-  background-color: var(--anypoiont-menu-button-dropdown-background, var(--primary-background-color));
+  background-color: var(--anypoint-menu-button-dropdown-background, var(--primary-background-color));
 }
 
 :host([verticalalign="top"]) .dropdown-content {

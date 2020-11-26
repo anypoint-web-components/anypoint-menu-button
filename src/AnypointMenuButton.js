@@ -312,7 +312,8 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
       .focusTarget="${_dropdownContent}"
       ?allowOutsideScroll="${allowOutsideScroll}"
       ?restoreFocusOnClose="${restoreFocusOnClose}"
-      @cancel="${this.__overlayCanceledHandler}">
+      @cancel="${this.__overlayCanceledHandler}"
+    >
       <div slot="dropdown-content" class="dropdown-content">
         <slot id="content" name="dropdown-content"></slot>
       </div>
