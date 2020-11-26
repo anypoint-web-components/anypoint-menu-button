@@ -16,7 +16,7 @@ export default css`
 .dropdown-content {
   box-shadow: var(--anypoint-menu-button-context-shadow, var(--anypoint-dropdown-shadow));
   position: relative;
-  border-radius: 2px;
+  border-radius: var(--anypoint-menu-button-border-radius, 2px);
   background-color: var(--anypoint-menu-button-dropdown-background, var(--primary-background-color));
 }
 
