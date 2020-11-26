@@ -1,3 +1,4 @@
+/* eslint-disable lit-a11y/click-events-have-key-events */
 import { html, LitElement } from 'lit-element';
 import '@anypoint-web-components/anypoint-dropdown/anypoint-dropdown.js';
 import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins';
@@ -114,6 +115,9 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     this._openedChanged(value);
   }
 
+  /**
+   * @returns {HTMLElement}
+   */
   get contentElement() {
     const slot = /** @type HTMLSlotElement */ (this.shadowRoot.querySelector('#content'));
     /* istanbul ignore if */
@@ -123,7 +127,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     const nodes = slot.assignedElements();
     for (let i = 0, l = nodes.length; i < l; i++) {
       if (nodes[i].nodeType === Node.ELEMENT_NODE) {
-        return nodes[i];
+        return /** @type HTMLElement */ (nodes[i]);
       }
     }
     /* istanbul ignore if */
@@ -195,7 +199,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
   }
 
   _openedHandler(e) {
-    this.opened = e.detail.value;
+    this.opened = e.target.opened;
   }
 
   /**
@@ -250,22 +254,26 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
 
   _openedChanged(opened) {
     let type;
+    let typeOld;
     if (opened) {
       this._dropdownContent = this.contentElement;
-      type = 'dropdown-open';
+      type = 'dropdownopen';
+      typeOld = 'dropdown-open';
     } else {
-      type = 'dropdown-close';
+      type = 'dropdownclose';
+      typeOld = 'dropdown-close';
     }
-    this.dispatchEvent(new CustomEvent(type, {
+    this.dispatchEvent(new CustomEvent(type));
+    // this is left for compatibility. TO be removed in the future
+    this.dispatchEvent(new CustomEvent(typeOld, {
       bubbles: true,
       composed: true
     }));
   }
 
   __overlayCanceledHandler(e) {
-    const uiEvent = e.detail;
     const trigger = this.shadowRoot.querySelector('#trigger');
-    const path = uiEvent.path || uiEvent.composedPath();
+    const path = e.composedPath();
     if (path.indexOf(trigger) > -1) {
       e.preventDefault();
     }
@@ -283,7 +291,6 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
       noAnimations,
       allowOutsideScroll,
       restoreFocusOnClose,
-      compatibility,
       _dropdownContent
     } = this;
     return html`
@@ -294,19 +301,18 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
     <anypoint-dropdown
       id="dropdown"
       .opened="${opened}"
-      @opened-changed="${this._openedHandler}"
-      .horizontalAlign="${ifDefined(horizontalAlign)}"
-      .verticalAlign="${ifDefined(verticalAlign)}"
-      .horizontalOffset="${ifDefined(horizontalOffset)}"
-      .verticalOffset="${ifDefined(verticalOffset)}"
+      @openedchange="${this._openedHandler}"
+      horizontalAlign="${ifDefined(horizontalAlign)}"
+      verticalAlign="${ifDefined(verticalAlign)}"
+      horizontalOffset="${ifDefined(horizontalOffset)}"
+      verticalOffset="${ifDefined(verticalOffset)}"
       ?dynamicAlign="${dynamicAlign}"
       ?noOverlap="${noOverlap}"
       ?noAnimations="${noAnimations}"
       .focusTarget="${_dropdownContent}"
       ?allowOutsideScroll="${allowOutsideScroll}"
       ?restoreFocusOnClose="${restoreFocusOnClose}"
-      ?compatibility="${compatibility}"
-      @overlay-canceled="${this.__overlayCanceledHandler}">
+      @cancel="${this.__overlayCanceledHandler}">
       <div slot="dropdown-content" class="dropdown-content">
         <slot id="content" name="dropdown-content"></slot>
       </div>

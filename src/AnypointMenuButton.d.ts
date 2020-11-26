@@ -2,21 +2,28 @@ import { TemplateResult, LitElement, CSSResult } from 'lit-element';
 import { AnypointDropdown } from '@anypoint-web-components/anypoint-dropdown';
 import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins';
 
-export class AnypointMenuButton {
-  readonly styles: CSSResult;
+/**
+ * @fires dropdownopen When the dropdown becomes opened
+ * @fires dropdownclose When the dropdown becomes closed
+ */
+export class AnypointMenuButton extends ControlStateMixin(LitElement) {
+  get styles(): CSSResult;
 
   /**
    * True if the content is currently displayed.
+   * @attribute
    */
   opened: boolean;
   /**
    * The orientation against which to align the menu dropdown
    * horizontally relative to the dropdown trigger.
+   * @attribute
    */
   horizontalAlign: string;
   /**
    * The orientation against which to align the menu dropdown
    * vertically relative to the dropdown trigger.
+   * @attribute
    */
   verticalAlign: string;
   /**
@@ -24,28 +31,33 @@ export class AnypointMenuButton {
    * be considered preferences instead of strict requirements when
    * positioning the dropdown and may be changed if doing so reduces
    * the area of the dropdown falling outside of `fitInto`.
+   * @attribute
    */
   dynamicAlign: boolean;
   /**
    * A pixel value that will be added to the position calculated for the
    * given `horizontalAlign`. Use a negative value to offset to the
    * left, or a positive value to offset to the right.
+   * @attribute
    */
   horizontalOffset: number;
   /**
    * A pixel value that will be added to the position calculated for the
    * given `verticalAlign`. Use a negative value to offset towards the
    * top, or a positive value to offset towards the bottom.
+   * @attribute
    */
   verticalOffset: number;
   /**
    * If true, the dropdown will be positioned so that it doesn't overlap
    * the button.
+   * @attribute
    */
   noOverlap: boolean;
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
+   * @attribute
    */
   noAnimations: boolean;
   /**
@@ -53,25 +65,30 @@ export class AnypointMenuButton {
    * to itself when opened.
    * Set to true in order to prevent scroll from being constrained
    * to the dropdown when it opens.
+   * @attribute
    */
   allowOutsideScroll: boolean;
   /**
    * Whether focus should be restored to the button when the menu closes.
+   * @attribute
    */
   restoreFocusOnClose: boolean;
   /**
    * Set to true to disable automatically closing the dropdown after
    * a selection has been made.
+   * @attribute
    */
   ignoreSelect: boolean;
 
   /**
    * Set to true to enable automatically closing the dropdown after an
    * item has been activated, even if the selection did not change.
+   * @attribute
    */
   closeOnActivate: boolean;
   /**
    * Enables Anypoint compatibility
+   * @attribute
    */
   compatibility: boolean;
   /**
@@ -80,9 +97,9 @@ export class AnypointMenuButton {
    */
   _dropdownContent: object;
 
-  readonly dropdown: AnypointDropdown
+  get dropdown(): AnypointDropdown
 
-  readonly contentElement: HTMLElement;
+  get contentElement(): HTMLElement;
 
   /**
    * Handler for `select` event
@@ -126,6 +143,6 @@ export class AnypointMenuButton {
   render(): TemplateResult;
 }
 
-export declare interface AnypointMenuButton extends ControlStateMixin, LitElement {
+// export declare interface AnypointMenuButton extends ControlStateMixin, LitElement {
 
-}
+// }

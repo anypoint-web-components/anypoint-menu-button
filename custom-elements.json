@@ -1,0 +1,213 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "anypoint-menu-button",
+      "path": "./anypoint-menu-button.js",
+      "attributes": [
+        {
+          "name": "opened",
+          "description": "True if the content is currently displayed.",
+          "type": "boolean"
+        },
+        {
+          "name": "horizontalAlign",
+          "description": "The orientation against which to align the menu dropdown\nhorizontally relative to the dropdown trigger.",
+          "type": "string"
+        },
+        {
+          "name": "verticalAlign",
+          "description": "The orientation against which to align the menu dropdown\nvertically relative to the dropdown trigger.",
+          "type": "string"
+        },
+        {
+          "name": "dynamicAlign",
+          "description": "If true, the `horizontalAlign` and `verticalAlign` properties will\nbe considered preferences instead of strict requirements when\npositioning the dropdown and may be changed if doing so reduces\nthe area of the dropdown falling outside of `fitInto`.",
+          "type": "boolean"
+        },
+        {
+          "name": "horizontalOffset",
+          "description": "A pixel value that will be added to the position calculated for the\ngiven `horizontalAlign`. Use a negative value to offset to the\nleft, or a positive value to offset to the right.",
+          "type": "number"
+        },
+        {
+          "name": "verticalOffset",
+          "description": "A pixel value that will be added to the position calculated for the\ngiven `verticalAlign`. Use a negative value to offset towards the\ntop, or a positive value to offset towards the bottom.",
+          "type": "number"
+        },
+        {
+          "name": "noOverlap",
+          "description": "If true, the dropdown will be positioned so that it doesn't overlap\nthe button.",
+          "type": "boolean"
+        },
+        {
+          "name": "noAnimations",
+          "description": "Set to true to disable animations when opening and closing the\ndropdown.",
+          "type": "boolean"
+        },
+        {
+          "name": "allowOutsideScroll",
+          "description": "By default, the dropdown will constrain scrolling on the page\nto itself when opened.\nSet to true in order to prevent scroll from being constrained\nto the dropdown when it opens.",
+          "type": "boolean"
+        },
+        {
+          "name": "restoreFocusOnClose",
+          "description": "Whether focus should be restored to the button when the menu closes.",
+          "type": "boolean"
+        },
+        {
+          "name": "ignoreSelect",
+          "description": "Set to true to disable automatically closing the dropdown after\na selection has been made.",
+          "type": "boolean"
+        },
+        {
+          "name": "closeOnActivate",
+          "description": "Set to true to enable automatically closing the dropdown after an\nitem has been activated, even if the selection did not change.",
+          "type": "boolean"
+        },
+        {
+          "name": "compatibility",
+          "description": "Enables Anypoint compatibility",
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult"
+        },
+        {
+          "name": "opened",
+          "attribute": "opened",
+          "description": "True if the content is currently displayed.",
+          "type": "boolean"
+        },
+        {
+          "name": "horizontalAlign",
+          "attribute": "horizontalAlign",
+          "description": "The orientation against which to align the menu dropdown\nhorizontally relative to the dropdown trigger.",
+          "type": "string"
+        },
+        {
+          "name": "verticalAlign",
+          "attribute": "verticalAlign",
+          "description": "The orientation against which to align the menu dropdown\nvertically relative to the dropdown trigger.",
+          "type": "string"
+        },
+        {
+          "name": "dynamicAlign",
+          "attribute": "dynamicAlign",
+          "description": "If true, the `horizontalAlign` and `verticalAlign` properties will\nbe considered preferences instead of strict requirements when\npositioning the dropdown and may be changed if doing so reduces\nthe area of the dropdown falling outside of `fitInto`.",
+          "type": "boolean"
+        },
+        {
+          "name": "horizontalOffset",
+          "attribute": "horizontalOffset",
+          "description": "A pixel value that will be added to the position calculated for the\ngiven `horizontalAlign`. Use a negative value to offset to the\nleft, or a positive value to offset to the right.",
+          "type": "number"
+        },
+        {
+          "name": "verticalOffset",
+          "attribute": "verticalOffset",
+          "description": "A pixel value that will be added to the position calculated for the\ngiven `verticalAlign`. Use a negative value to offset towards the\ntop, or a positive value to offset towards the bottom.",
+          "type": "number"
+        },
+        {
+          "name": "noOverlap",
+          "attribute": "noOverlap",
+          "description": "If true, the dropdown will be positioned so that it doesn't overlap\nthe button.",
+          "type": "boolean"
+        },
+        {
+          "name": "noAnimations",
+          "attribute": "noAnimations",
+          "description": "Set to true to disable animations when opening and closing the\ndropdown.",
+          "type": "boolean"
+        },
+        {
+          "name": "allowOutsideScroll",
+          "attribute": "allowOutsideScroll",
+          "description": "By default, the dropdown will constrain scrolling on the page\nto itself when opened.\nSet to true in order to prevent scroll from being constrained\nto the dropdown when it opens.",
+          "type": "boolean"
+        },
+        {
+          "name": "restoreFocusOnClose",
+          "attribute": "restoreFocusOnClose",
+          "description": "Whether focus should be restored to the button when the menu closes.",
+          "type": "boolean"
+        },
+        {
+          "name": "ignoreSelect",
+          "attribute": "ignoreSelect",
+          "description": "Set to true to disable automatically closing the dropdown after\na selection has been made.",
+          "type": "boolean"
+        },
+        {
+          "name": "closeOnActivate",
+          "attribute": "closeOnActivate",
+          "description": "Set to true to enable automatically closing the dropdown after an\nitem has been activated, even if the selection did not change.",
+          "type": "boolean"
+        },
+        {
+          "name": "compatibility",
+          "attribute": "compatibility",
+          "description": "Enables Anypoint compatibility",
+          "type": "boolean"
+        },
+        {
+          "name": "dropdown",
+          "type": "AnypointDropdown"
+        },
+        {
+          "name": "contentElement",
+          "type": "HTMLElement"
+        },
+        {
+          "name": "onselect",
+          "description": "Handler for `select` event",
+          "type": "EventListener | null"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "attribute": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        }
+      ],
+      "events": [
+        {
+          "name": "dropdownopen",
+          "description": "When the dropdown becomes opened"
+        },
+        {
+          "name": "dropdownclose",
+          "description": "When the dropdown becomes closed"
+        },
+        {
+          "name": "focusedchange",
+          "description": "When the `focused` property has changed"
+        },
+        {
+          "name": "disabledchange",
+          "description": "When the `disabled` property has changed"
+        }
+      ]
+    }
+  ]
+}
