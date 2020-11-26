@@ -19,3 +19,18 @@
 * upgrading to open-wc standards [773173c](https://github.com/anypoint-web-components/anypoint-menu-button/commit/773173cc58e348ac1a3a4ecb26a87f30be472f94) by Pawel
 
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/anypoint-web-components/anypoint-menu-button/compare/0.1.0...0.1.2) (2020-11-26)
+
+### Update
+
+* upgrading types [340552c](https://github.com/anypoint-web-components/anypoint-menu-button/commit/340552cc383508f907e93ff8f58d4ee3f729c4ad) by Pawel Psztyc
+* upgrading test runner [4e7ee7d](https://github.com/anypoint-web-components/anypoint-menu-button/commit/4e7ee7d5be0154cec6d4694c366a6b300590eae1) by Pawel Psztyc
+* [ci skip] automated merge master->stage. syncing main branches [8021588](https://github.com/anypoint-web-components/anypoint-menu-button/commit/8021588dac53c8f64c530c412056d4a6e3a67ceb) by Ci agent
+
+
+### Refactor
+
+* upgrading to open-wc standards [773173c](https://github.com/anypoint-web-components/anypoint-menu-button/commit/773173cc58e348ac1a3a4ecb26a87f30be472f94) by Pawel
+
+
