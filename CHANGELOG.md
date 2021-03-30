@@ -69,3 +69,18 @@
 * fixing shadow CSS var name [058c745](https://github.com/anypoint-web-components/anypoint-menu-button/commit/058c745f0440658499043321dd9178f8b2caa256) by Pawel Psztyc
 
 
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/anypoint-web-components/anypoint-menu-button/compare/0.1.3...0.1.5) (2021-03-30)
+
+### Update
+
+* update dependencies [39215b8](https://github.com/anypoint-web-components/anypoint-menu-button/commit/39215b88aec7291e4e79493c32d68072820da137) by Pawel Psztyc
+* [ci skip] automated merge master->stage. syncing main branches [b9961e8](https://github.com/anypoint-web-components/anypoint-menu-button/commit/b9961e86da47c96331fbefe93d2429a4b5a53838) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [3b03205](https://github.com/anypoint-web-components/anypoint-menu-button/commit/3b032053a1a8c8204815a57c9b4b203662dface6) by Ci agent
+
+
+### Features
+
+* adding border-radius CSS variable [db36773](https://github.com/anypoint-web-components/anypoint-menu-button/commit/db3677326bc38edb9e219a3f0235bae130804653) by Pawel Psztyc
+
+
