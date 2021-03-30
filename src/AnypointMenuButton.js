@@ -10,7 +10,9 @@ import buttonStyles from './Styles.js';
 /* eslint-disable no-plusplus */
 
 export class AnypointMenuButton extends ControlStateMixin(LitElement) {
-  static get styles() {
+
+  // eslint-disable-next-line class-methods-use-this
+  get styles() {
     return buttonStyles;
   }
 
@@ -294,6 +296,7 @@ export class AnypointMenuButton extends ControlStateMixin(LitElement) {
       _dropdownContent
     } = this;
     return html`
+    <style>${this.styles}</style>
     <div id="trigger" @click="${this.toggle}">
       <slot name="dropdown-trigger"></slot>
     </div>
