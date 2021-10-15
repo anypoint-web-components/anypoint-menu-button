@@ -1,8 +1,8 @@
-[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-menu-button.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-menu-button)
+# Deprecated
 
-[![Build Status](https://travis-ci.org/anypoint-web-components/anypoint-menu-button.svg?branch=stage)](https://travis-ci.org/anypoint-web-components/anypoint-menu-button)
+This component has been moved to `anypoint-web-components/awc`.
 
-# anypoint-menu-button
+-----
 
 A material design button that triggers a menu, also styled for Anypoint platform.
 
